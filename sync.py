@@ -7,9 +7,9 @@ TOKEN = "D-lBzrPi4vcAAAAAAAAAAWI8NdYcbuPnQHjzXVDRlzbyyOqrURDnhbWcExVAXYVT"
 
 # game save data (Citra)
 GAME = "pokemon_ultra_sun"
+save_location = ""
 save_location_win = r"C:\Users\LENOVO\AppData\Roaming\Citra\sdmc\Nintendo 3DS\00000000000000000000000000000000\00000000000000000000000000000000\title\00040000\001b5000\data\00000001"
 save_location_android = "/sdcard/citra-emu/sdmc/Nintendo 3DS/00000000000000000000000000000000/00000000000000000000000000000000/title/00040000/001b5000/data/00000001"
-save_location = ""
 filename = "main"
 
 
@@ -40,7 +40,8 @@ def get_time():
     a = str(datetime.now())
     return a.replace(":", ".")
 
-def backupAndUpload(dbx):
+def backupAndUpload():
+    dbx = connect_to_dropbox()
     # cloud backup
     try:
         dbx.files_copy_v2("/citra-emu/" + GAME + "/" + filename, "/citra-emu/" +
@@ -52,7 +53,8 @@ def backupAndUpload(dbx):
         dbx.files_upload(f.read(), path="/citra-emu/" + GAME +
                          "/" + filename, mode=dropbox.files.WriteMode.overwrite)
 
-def backupAndDownload(dbx):
+def backupAndDownload():
+    dbx = connect_to_dropbox()
     # local backup 
     if not os.path.exists(save_location + '/' + GAME + '-BACKUP'):
         os.makedirs(save_location + '/' + GAME + '-BACKUP')
@@ -64,8 +66,8 @@ def backupAndDownload(dbx):
 
 
 if __name__ == '__main__':
-    if (len(sys.argv) != 2):
-        print("Invalid input, use -u[upload] or -d[download]")
+    if (len(sys.argv) != 3):
+        print("Invalid input, use -u[-d] game_name")
     else:
         if (hasattr(sys, 'getandroidapilevel')):
             save_location = save_location_android
@@ -74,9 +76,10 @@ if __name__ == '__main__':
             save_location = save_location_win
             print("other platfrom detect")
         print("save location: ", save_location)
-        dbx = connect_to_dropbox()
+        GAME = sys.argv[2]
+        print("game name: ", GAME)
         if(sys.argv[1] == "-d"):
-            backupAndDownload(dbx)
+            backupAndDownload()
         elif (sys.argv[1] == "-u"):
-            backupAndUpload(dbx)
+            backupAndUpload()
         print("done")
