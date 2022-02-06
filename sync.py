@@ -74,6 +74,7 @@ if __name__ == '__main__':
         else:
             save_location = save_location_win
             print("other platfrom detect")
+        print("save location: ", save_location)
         dbx = connect_to_dropbox()
         if(sys.argv[1] == "-d"):
             backupAndDownload(dbx)
