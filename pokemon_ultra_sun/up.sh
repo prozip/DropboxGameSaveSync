@@ -1,0 +1,1 @@
+python ../sync.py -u pokemon_ultra_sun
