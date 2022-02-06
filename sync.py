@@ -8,7 +8,7 @@ TOKEN = "D-lBzrPi4vcAAAAAAAAAAWI8NdYcbuPnQHjzXVDRlzbyyOqrURDnhbWcExVAXYVT"
 # game save data (Citra)
 GAME = "pokemon_ultra_sun"
 save_location_win = r"C:\Users\LENOVO\AppData\Roaming\Citra\sdmc\Nintendo 3DS\00000000000000000000000000000000\00000000000000000000000000000000\title\00040000\001b5000\data\00000001"
-save_location_android = "/sdcard/citra-emu/sdmc/Nintendo 3DS/00000000000000000000000000000000/00000000000000000000000000000000/title/00040000\001b5000\data\00000001"
+save_location_android = "/sdcard/citra-emu/sdmc/Nintendo 3DS/00000000000000000000000000000000/00000000000000000000000000000000/title/00040000/001b5000/data/00000001"
 save_location = ""
 filename = "main"
 
