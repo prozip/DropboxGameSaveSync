@@ -70,8 +70,10 @@ if __name__ == '__main__':
     else:
         if (hasattr(sys, 'getandroidapilevel')):
             save_location = save_location_android
+            print("android platform detect")
         else:
             save_location = save_location_win
+            print("other platfrom detect")
         dbx = connect_to_dropbox()
         if(sys.argv[1] == "-d"):
             backupAndDownload(dbx)
