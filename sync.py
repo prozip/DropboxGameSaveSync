@@ -56,8 +56,7 @@ def backupAndDownload(dbx):
     # local backup 
     if not os.path.exists(save_location + '/' + GAME + '-BACKUP'):
         os.makedirs(save_location + '/' + GAME + '-BACKUP')
-    else:
-        shutil.copyfile(save_location + '/' + filename, save_location + '/' + GAME + '-BACKUP/' + filename + '_' + get_time() )
+    shutil.copyfile(save_location + '/' + filename, save_location + '/' + GAME + '-BACKUP/' + filename + '_' + get_time() )
     # download 
     with open(save_location + '/' + filename, "wb") as f:
         metadata, res = dbx.files_download(path=f"/citra-emu/" + GAME + "/" + filename)
@@ -80,3 +79,4 @@ if __name__ == '__main__':
             backupAndDownload(dbx)
         elif (sys.argv[1] == "-u"):
             backupAndUpload(dbx)
+        print("done")
